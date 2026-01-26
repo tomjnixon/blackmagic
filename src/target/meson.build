@@ -205,6 +205,7 @@ target_lpc = declare_dependency(
 		'lpc11xx.c',
 		'lpc15xx.c',
 		'lpc17xx.c',
+		'lpc18xx.c',
 		'lpc40xx.c',
 		'lpc43xx.c',
 		'lpc546xx.c',

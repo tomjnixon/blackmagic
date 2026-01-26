@@ -73,6 +73,7 @@ bool lmi_probe(target_s *target);
 bool lpc11xx_probe(target_s *target);
 bool lpc15xx_probe(target_s *target);
 bool lpc17xx_probe(target_s *target);
+bool lpc18xx_probe(target_s *target);
 bool lpc40xx_probe(target_s *target);
 bool lpc43xx_probe(target_s *target);
 bool lpc546xx_probe(target_s *target);
