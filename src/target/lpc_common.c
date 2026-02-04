@@ -215,9 +215,7 @@ iap_status_e lpc_iap_call(target_s *const target, iap_result_s *const result, ia
 	target_regs_write(target, regs);
 
 	/* Figure out if we're about to execute a mass erase or not */
-	const bool full_erase = cmd == IAP_CMD_ERASE &&
-		lpc_is_full_erase((lpc_flash_s *)target_flash_for_addr(target, frame.config.params[0]), frame.config.params[0],
-			frame.config.params[1]);
+	const bool full_erase = cmd == IAP_CMD_ERASE;
 
 	platform_timeout_s timeout;
 	platform_timeout_set(&timeout, 500);
