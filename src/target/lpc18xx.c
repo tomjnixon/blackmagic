@@ -126,7 +126,7 @@ bool lpc18xx_probe(target_s *const target)
 
 	part_t *part = NULL;
 	for (size_t i = 0; i < ARRAY_LENGTH(parts); i++) {
-		if (result.values[0] == parts[i].id[0] && result.values[1] == parts[i].id[1]) {
+		if (result.values[0] == parts[i].id[0] && (0xff & result.values[1]) == parts[i].id[1]) {
 			part = parts + i;
 			break;
 		}
