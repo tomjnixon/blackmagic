@@ -291,6 +291,9 @@ bool lpc_flash_erase(target_flash_s *target_flash, target_addr_t addr, size_t le
 	const uint32_t end = lpc_sector_for_addr(flash, addr + len - 1U);
 	uint32_t last_full_sector = end;
 
+	if (lpc_iap_call(target, NULL, IAP_CMD_INIT) == IAP_STATUS_INVALID_COMMAND)
+		return false;
+
 	if (lpc_iap_call(target, NULL, IAP_CMD_PREPARE, start, end, flash->bank) != IAP_STATUS_CMD_SUCCESS)
 		return false;
 
@@ -330,6 +333,8 @@ static bool lpc_flash_write(target_flash_s *target_flash, target_addr_t dest, co
 	target_s *const target = target_flash->t;
 	const lpc_priv_s *const priv = (const lpc_priv_s *)target->target_storage;
 	const lpc_flash_s *const flash = (const lpc_flash_s *)target_flash;
+	if (lpc_iap_call(target, NULL, IAP_CMD_INIT) == IAP_STATUS_INVALID_COMMAND)
+		return false;
 	/* Prepare... */
 	const uint32_t sector = lpc_sector_for_addr(flash, dest);
 	if (lpc_iap_call(target, NULL, IAP_CMD_PREPARE, sector, sector, flash->bank) != IAP_STATUS_CMD_SUCCESS) {
