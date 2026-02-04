@@ -141,6 +141,8 @@ bool lpc18xx_probe(target_s *const target)
 	target->enter_flash_mode = lpc18xx_enter_flash_mode;
 	target->exit_flash_mode = lpc18xx_exit_flash_mode;
 
+	target->target_options |= TOPT_INHIBIT_NRST;
+
 	// local SRAM
 	target_add_ram32(target, 0x10000000U, part->local_sram_1_chunks * 0x8000U);
 	target_add_ram32(target, 0x10080000U, 0xa000U);
